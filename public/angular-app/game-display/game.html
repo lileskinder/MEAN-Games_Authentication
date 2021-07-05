@@ -1,0 +1,15 @@
+<h1>Information about the game:
+    <p>{{vm.game.title}}<br>
+        <game-rating stars=vm.starsArray></game-rating>
+    </p>
+</h1>
+
+<p>
+    price: {{vm.game.price | currency}} <br>
+    Minimum players: {{vm.game.minPlayers}} <br>
+    Minimum players: {{vm.game.maxPlayers}} <br>
+    Minimum Age: {{vm.game.minAge}} <br>
+</p>
+
+<button ng-show={{vm.isLoggedIn()}} type="button" ng-click="vm.deleteGame()">Delete</button><br>
+<span ng-show="showDeleted" style="color: red;">{{vm.game.title}} deleted!</span><br>

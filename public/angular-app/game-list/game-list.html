@@ -1,0 +1,49 @@
+<h1>
+    {{vm.title}}
+</h1>
+
+<div class="main-page">
+    <ul class="gamesList"> 
+        <input type="text" ng-model="search">
+        <li ng-repeat="game in vm.games | filter: search">
+            <a ng-href="#!/games/{{game._id}}">{{game.title}}</a>
+        </li>
+
+    </ul>
+
+
+    <form ng-show={{vm.isLoggedIn()}} name="vm.gameForm" ng-submit="vm.addGame()">
+        Add a new Game <br>
+
+        Title: <br><input type="text" name="title" required ng-model="vm.newGameTitle" style="color: black;" />
+        <span ng-show="vm.gameForm.title.$touched && vm.gameForm.title.$invalid" style="color: red;">The name
+            is required.</span><br>
+
+        Price: <br><input type="text" name="price" required ng-model="vm.newGamePrice" style="color: black;" /><br>
+
+        Year: <br><input type="text" name="year" required ng-model="vm.newGameYear" style="color: black;" /><br>
+
+        Rating: <br><input type="text" name="rate" required ng-model="vm.newGameRate" style="color: black;" /><br>
+
+        Minimum Players: <br><input type="text" name="minPlayers" required ng-model="vm.newGameMinPlayes"
+            style="color: black;" ng-pattern="/^[1-9][0-9]{0,1}/" />
+        <span
+            ng-show="vm.gameForm.minPlayers.$dirty && vm.gameForm.minPlayers.$invalid && vm.gameForm.minPlayers.$touched"
+            style="color: red;">Min players should be 1-99</span><br>
+
+        Maximum Players: <br><input type="text" name="maxPlayers" required ng-model="vm.newGameMaxPlayers"
+            style="color: black;" ng-pattern="/^[1-9][0-9]{0,1}/" />
+        <span
+            ng-show="vm.gameForm.maxPlayers.$dirty && vm.gameForm.maxPlayers.$invalid && vm.gameForm.maxPlayers.$touched"
+            style="color: red;">Max players should be 1-99</span><br>
+
+
+        Minimum Age: <br><input type="text" name="minAge" required ng-model="vm.newGameMinAge" style="color: black;" /><br>
+
+        Designers: <br><input type="text" name="designer" required ng-model="vm.newGameDesigners"
+            style="color: black;" /><br>
+
+        <button type="submit" class="btn-success">Add Game</button><br>
+        <span ng-show="showAdded" style="color: red;">{{vm.newGameTitle}} Added!</span><br>
+    </form>
+</div>
